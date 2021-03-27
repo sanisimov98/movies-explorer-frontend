@@ -1,0 +1,16 @@
+.filter__toggle {
+    width: 36px;
+    height: 20px;
+    margin: 0 13px 0 0;
+    border-radius: 20px;
+    background-color: #2F2F2F;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: ease-in-out 200ms;
+}
+
+.filter__toggle:hover {
+    opacity: 0.6;
+}

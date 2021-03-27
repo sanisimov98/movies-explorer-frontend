@@ -1,0 +1,12 @@
+.profile__settings-text {
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    margin: 0;
+    transition: ease-in-out 200ms;
+    cursor: pointer;
+}
+
+.profile__settings-text:hover {
+    opacity: 0.6;
+}

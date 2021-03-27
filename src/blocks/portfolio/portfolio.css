@@ -1,0 +1,23 @@
+@import "__title/portfolio__title.css";
+@import "__list/portfolio__list.css";
+@import "__list-item/portfolio__list-item.css";
+@import "__link/portfolio__link.css";
+@import "__link-text/portfolio__link-text.css";
+@import "__link/_last/portfolio__link_last.css";
+
+.portfolio {
+    width: 85%;
+    max-width: 1140px;
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .portfolio {
+        width: 98%;
+    }
+}

@@ -1,0 +1,10 @@
+@import "__button/movies__button.css";
+
+.movies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+    width: 91%;
+    max-width: 1140px;
+}

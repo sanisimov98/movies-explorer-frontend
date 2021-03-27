@@ -1,0 +1,8 @@
+.about-me__link {
+    transition: ease-in-out 200ms;
+    opacity: 1;
+}
+
+.about-me__link:hover {
+    opacity: 0.6;
+}

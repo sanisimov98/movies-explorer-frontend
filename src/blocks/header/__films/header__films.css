@@ -1,0 +1,16 @@
+.header__films {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .header__films {
+        width: 100%;
+        height: 100%;
+        background-color: #202020;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

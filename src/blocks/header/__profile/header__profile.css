@@ -1,0 +1,21 @@
+.header__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    max-width: 100px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+    border-radius: 40px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header__profile {
+        width: 100%;
+        max-width: unset;
+        background-color: #202020;
+        justify-content: center;
+        border-radius: 0;
+        padding: 0 0 90px 0;
+    }
+}

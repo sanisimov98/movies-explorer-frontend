@@ -1,0 +1,19 @@
+@import "__container/auth__container.css";
+@import "__title/auth__title.css";
+@import "__label/auth__label.css";
+@import "__logo/auth__logo.css";
+@import "__form/auth__form.css";
+@import "__form-item/auth__form-item.css";
+@import "__form-text/auth__form-text.css";
+@import "__form-link/auth__form-link.css";
+@import "__form-button/auth__form-button.css";
+@import "__error/auth__error.css";
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+    width: 100%;
+}

@@ -1,13 +1,21 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@import "vendor/normalize.css";
+@import "vendor/fonts/inter.css";
+@import "blocks/page/page.css";
+@import "blocks/header/header.css";
+@import "blocks/main/main.css";
+@import "blocks/movies/movies.css";
+@import "blocks/card-list/card-list.css";
+@import "blocks/card/card.css";
+@import "blocks/search/search.css";
+@import "blocks/filter/filter.css";
+@import "blocks/profile/profile.css";
+@import "blocks/movies-searches/movies-searches.css";
+@import "blocks/footer/footer.css";
+@import "blocks/promo/promo.css";
+@import "blocks/nav/nav.css";
+@import "blocks/about/about.css";
+@import "blocks/techs/techs.css";
+@import "blocks/about-me/about-me.css";
+@import "blocks/portfolio/portfolio.css";
+@import "blocks/auth/auth.css";
+@import "blocks/not-found/not-found.css";

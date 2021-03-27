@@ -1,0 +1,11 @@
+@import "__label/filter__label.css";
+@import "__checkbox/filter__checkbox.css";
+@import "__text/filter__text.css";
+@import "__toggle/filter__toggle.css";
+@import "__toggle/_clicked/filter__toggle_clicked.css";
+@import "__toggle-circle/filter__toggle-circle.css";
+@import "__toggle-circle/_clicked/filter__toggle-circle_clicked.css";
+
+.filter {
+    margin-bottom: 39px;
+}

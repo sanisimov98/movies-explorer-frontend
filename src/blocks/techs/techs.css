@@ -1,0 +1,16 @@
+@import "__container/techs__container.css";
+@import "__content/techs__content.css";
+@import "__subtitle/techs__subtitle.css";
+@import "__text/techs__text.css";
+@import "__items/techs__items.css";
+@import "__item/techs__item.css";
+@import "__item/_last/techs__item_last.css";
+
+.techs {
+    width: 100%;
+    background-color: #272727;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
