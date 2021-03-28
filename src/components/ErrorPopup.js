@@ -1,5 +1,3 @@
 export default function ErrorPopup() {
-    return (
-        <div></div>
-    )
+  return <div></div>;
 }

@@ -6,13 +6,13 @@ import AboutMe from "./AboutMe";
 import Portfolio from "./Portfolio";
 
 export default function Main() {
-    return (
-        <main className={"main"}>
-            <Promo />
-            <AboutProject />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
-        </main>
-    )
+  return (
+    <main className={"main"}>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </main>
+  );
 }
