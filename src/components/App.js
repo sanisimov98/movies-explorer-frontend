@@ -96,7 +96,7 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
-  );
+  ); //
 }
 
 export default App;
