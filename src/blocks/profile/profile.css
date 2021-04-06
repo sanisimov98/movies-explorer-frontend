@@ -1,0 +1,23 @@
+@import "__title/profile__title.css";
+@import "__item-subtitle/profile__item-subtitle.css";
+@import "__data/profile__data.css";
+@import "__data-item/profile__data-item.css";
+@import "__data-item/_last/profile__data-item_last.css";
+@import "__item-text/profile__item-text.css";
+@import "__settings/profile__settings.css";
+@import "__settings-logout/profile__settings-logout.css";
+@import "__settings-text/profile__settings-text.css";
+
+.profile {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 410px;
+}
+
+@media screen and (max-width: 440px) {
+    .profile {
+        width: 90%;
+    }
+}

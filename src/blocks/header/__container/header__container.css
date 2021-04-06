@@ -1,0 +1,10 @@
+.header__container {
+    display: flex;
+    flex-direction: row;
+    width: 91%;
+    max-width: 1140px;
+    margin: 18px auto;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}

@@ -1,0 +1,17 @@
+.auth__form-button {
+    background: #4285F4;
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 14px 0;
+    border: none;
+    transition: ease-in-out 200ms;
+    margin: 179px 0 0 0;
+}
+
+.auth__form-button:hover {
+    opacity: 0.6;
+}

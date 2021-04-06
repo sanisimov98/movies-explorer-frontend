@@ -1,0 +1,26 @@
+.search__form {
+    background-color: #2F2F2F;
+    border-radius: 10px;
+    width: 93%;
+    max-width: 1060px;
+    height: 46px;
+    color: white;
+    border: none;
+    padding: 0 0 0 22px;
+    transition: ease-in-out 200ms;
+}
+
+.search__form:focus {
+    outline: none;
+    box-shadow: 0 0 1px 2px #8B8B8B;
+}
+
+.search__form::placeholder {
+    color: #8B8B8B;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .search__form {
+        width: 73%;
+    }
+}

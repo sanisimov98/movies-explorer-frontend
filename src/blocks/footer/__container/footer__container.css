@@ -1,0 +1,21 @@
+.footer__container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #424242;
+    max-width: 1140px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__container {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .footer__container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}

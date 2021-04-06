@@ -1,0 +1,25 @@
+@import "__info/about__info.css";
+@import "__info-item/about__info-item.css";
+@import "__info-title/about__info-title.css";
+@import "__info-text/about__info-text.css";
+@import "__info-item/_area_1/about__info-item_area_1.css";
+@import "__info-item/_area_2/about__info-item_area_2.css";
+@import "__info-bar/about__info-bar.css";
+@import "__info-bar-item/about__info-bar-item.css";
+@import "__info-bar-item/_type_backend/about__info-bar-item_type_backend.css";
+@import "__info-bar-item/_type_frontend/about__info-bar-item_type_frontend.css";
+@import "__info-bar-item/_type_subtitle-backend/about__info-bar-item_type_subtitle-backend.css";
+@import "__info-bar-item/_type_subtitle-frontend/about__info-bar-item_type_subtitle-frontend.css";
+
+.about {
+    width: 85%;
+    max-width: 1140px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        width: 95%;
+    }
+}

@@ -1,0 +1,27 @@
+.main__subtitle {
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    margin: 100px 0 0 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .main__subtitle {
+        font-size: 22px;
+        line-height: 27px;
+        margin: 90px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .main__subtitle {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 70px 0 0 0;
+        padding-bottom: 28px;
+    }
+}

@@ -1,0 +1,22 @@
+.header__films-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .header__films-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .header__films-container {
+        width: 100%;
+    }
+}
+

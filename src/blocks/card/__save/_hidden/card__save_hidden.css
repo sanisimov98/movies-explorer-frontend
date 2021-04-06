@@ -1,0 +1,11 @@
+.card__save_hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .card__save_hidden {
+        visibility: visible;
+        opacity: 1;
+    }
+}

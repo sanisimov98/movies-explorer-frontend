@@ -1,0 +1,19 @@
+.about__info-bar {
+    grid-area: info-bar;
+    display: grid;
+    grid-template-areas: "backend frontend frontend frontend frontend"
+    "subtitle_backend subtitle_frontend subtitle_frontend subtitle_frontend subtitle_frontend";
+    margin: 110px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .about__info-bar {
+        margin: 90px 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .about__info-bar {
+        margin: 60px 0 70px;
+    }
+}

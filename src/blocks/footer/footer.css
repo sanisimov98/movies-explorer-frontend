@@ -1,0 +1,15 @@
+@import "__container/footer__container.css";
+@import "__about/footer__about.css";
+@import "__link/footer__link.css";
+@import "__link-text/footer__link-text.css";
+@import "__links/footer__links.css";
+@import "__year/footer__year.css";
+
+.footer {
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

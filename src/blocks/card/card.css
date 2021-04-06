@@ -1,0 +1,27 @@
+@import "__info/card__info.css";
+@import "__image/card__image.css";
+@import "__title/card__title.css";
+@import "__duration/card__duration.css";
+@import "__check/card__check.css";
+@import "__save/card__save.css";
+@import "__save/_hidden/card__save_hidden.css";
+@import "__remove/card__remove.css";
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        max-width: 340px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .card {
+        max-width: 300px;
+    }
+}

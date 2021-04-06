@@ -1,0 +1,6 @@
+.about__info-bar-item_type_frontend {
+    grid-area: frontend;
+    padding: 9px 0;
+    background-color: #303030;
+    color: white;
+}

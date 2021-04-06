@@ -1,0 +1,27 @@
+@import "__container/about-me__container.css";
+@import "__info/about-me__info.css";
+@import "__name/about-me__name.css";
+@import "__texts/about-me__texts.css";
+@import "__text/about-me__text.css";
+@import "__text/_bold/about-me__text_bold.css";
+@import "__photo/about-me__photo.css";
+@import "__links/about-me__links.css";
+@import "__link/about-me__link.css";
+@import "__link-text/about-me__link-text.css";
+
+.about-me {
+    width: 85%;
+    max-width: 1140px;
+}
+
+@media screen and (max-width: 768px) {
+    .about-me {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .about-me {
+        width: 98%;
+    }
+}

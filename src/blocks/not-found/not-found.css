@@ -1,0 +1,12 @@
+@import "__title/not-found__title.css";
+@import "__text/not-found__text.css";
+@import "__container/not-found__container.css";
+@import "__link/not-found__link.css";
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 0 auto;
+}

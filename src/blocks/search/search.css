@@ -1,0 +1,10 @@
+@import "__button/search__button.css";
+@import "__form/search__form.css";
+
+.search {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    margin: 80px auto 20px;
+}

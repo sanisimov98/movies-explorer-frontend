@@ -1,0 +1,11 @@
+.header__profile-icon {
+    background-color: #F5F5F5;
+    border-radius: 50px;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}

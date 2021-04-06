@@ -1,0 +1,24 @@
+@import "./__films/header__films.css";
+@import "./__container/header__container.css";
+@import "./__films-item/header__films-item.css";
+@import "__films-item/_mobile/header__films-item_mobile.css";
+@import "__films-container/header__films-container.css";
+@import "./__logo/header__logo.css";
+@import "./__profile/header__profile.css";
+@import "./__profile-icon/header__profile-icon.css";
+@import "./__profile-text/header__profile-text.css";
+@import "./__films-item/_bold/header__films-item_bold.css";
+@import "__buttons/header__buttons.css";
+@import "__button/header__button.css";
+@import "__button/_login/header__button_login.css";
+@import "__films-icon/header__films-icon.css";
+@import "__films-menu/header__films-menu.css";
+@import "__films-menu/_hidden/header__films-menu_hidden.css";
+
+.header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

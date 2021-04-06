@@ -1,0 +1,23 @@
+.search__button {
+    width: 10%;
+    margin: 0 0 0 10px;
+    max-width: 70px;
+    background-color: #4285F4;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    font-weight: 500;
+    font-size: 12px;
+    transition: ease-in-out 200ms;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .search__button {
+        width: 25%;
+    }
+}
+
+.search__button:hover {
+    opacity: 0.6;
+}

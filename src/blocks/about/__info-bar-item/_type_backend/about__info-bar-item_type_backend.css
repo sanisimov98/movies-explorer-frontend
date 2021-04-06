@@ -1,0 +1,6 @@
+.about__info-bar-item_type_backend {
+    grid-area: backend;
+    background-color: #3DDC84;
+    color: black;
+    padding: 9px 0;
+}

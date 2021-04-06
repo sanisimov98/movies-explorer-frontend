@@ -1,0 +1,8 @@
+.about__info-item {
+}
+
+@media screen and (max-width: 425px){
+    .about__info-item {
+        margin: 56px 0 0 0;
+    }
+}

@@ -1,0 +1,13 @@
+.not-found__link {
+    text-decoration: none;
+    color: #4285F4;
+    transition: ease-in-out 200ms;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+.not-found__link:hover {
+    opacity: 0.6;
+}

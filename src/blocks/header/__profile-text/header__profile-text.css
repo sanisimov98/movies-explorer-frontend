@@ -1,0 +1,9 @@
+.header__profile-text {
+    margin: 9px 7px 9px 10px;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 12px;
+    color: white;
+}
