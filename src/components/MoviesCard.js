@@ -10,7 +10,6 @@ export default function MoviesCard({
 }) {
   const [isSaved, setIsSaved] = React.useState(film.saved);
   const [isHovered, setIsHovered] = React.useState(false);
-  const imageSrc = film.image;
   const duration = `${Math.round(film.duration / 60)}ч ${film.duration % 60}м`;
 
   const saveFilm = () => {
@@ -59,7 +58,11 @@ export default function MoviesCard({
           Сохранить
         </p>
       )}
-      <img className={"card__image"} src={imageSrc} alt={film.nameRU} />
+      <img
+        className={"card__image"}
+        src={film.image ? `https://api.nomoreparties.co${film.image.url}` : ""}
+        alt={film.nameRU}
+      />
       <div className={"card__info"}>
         <p className={"card__title"}>{film.nameRU}</p>
         <p className={"card__duration"}>{duration}</p>

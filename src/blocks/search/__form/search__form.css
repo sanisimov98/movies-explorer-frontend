@@ -7,10 +7,12 @@
     color: white;
     border: none;
     padding: 0 0 0 22px;
+    transition: ease-in-out 200ms;
 }
 
 .search__form:focus {
     outline: none;
+    box-shadow: 0 0 1px 2px #8B8B8B;
 }
 
 .search__form::placeholder {

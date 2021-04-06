@@ -18,21 +18,24 @@ import Profile from "./Profile";
 import NotFound from "./NotFound";
 import Preloader from "../vendor/preloader/Preloader";
 import moviesData from "../data/moviesData";
+import moviesApi from "../utils/MoviesApi";
 
 function App() {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [films, setFilms] = React.useState([]);
+  const [chosenFilms, setChosenFilms] = React.useState([]);
   const [savedFilms, setSavedFilms] = React.useState([]);
 
   React.useEffect(() => {
-    setFilms(moviesData);
-    setSavedFilms(moviesData.slice(0, 3));
+    moviesApi.getFilms().then((res) => {
+      console.log(res);
+      setFilms(res);
+    });
   }, []);
 
   const loginHandler = () => {
     setIsLoggedIn(true);
-    console.log(1);
     history.push(ROUTES_MAP.FILMS);
   };
 
@@ -67,7 +70,7 @@ function App() {
           <Route path={ROUTES_MAP.FILMS}>
             <Header isLoggedIn={isLoggedIn} />
             <Movies
-              films={films}
+              films={chosenFilms}
               handleFilmSave={handleFilmSave}
               handleFilmRemove={handleFilmRemove}
             />

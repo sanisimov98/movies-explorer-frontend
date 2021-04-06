@@ -8,7 +8,7 @@ export default function FilterCheckbox() {
 
   return (
     <div className={"filter"}>
-      <label className={"filter__label"}>
+      <div className={"filter__label"}>
         <div
           className={`filter__toggle ${
             shortFilmsSelected ? "filter__toggle_clicked" : ""
@@ -21,9 +21,9 @@ export default function FilterCheckbox() {
             }`}
           />
         </div>
-        <input className={"filter__checkbox"} type={"checkbox"} id={"filter"} />
-        Короткометражки
-      </label>
+        <p className={"filter__text"}>Короткометражки</p>
+      </div>
+      <input className={"filter__checkbox"} type={"checkbox"} id={"filter"} />
     </div>
   );
 }
