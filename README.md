@@ -1,3 +1,3 @@
 ## Дипломная работа Яндекс.Практикум: фронтенд.
 
-[Ссылка на сайт](bitfilmssanisimov.students.nomoredomains.icu)
+[Ссылка на сайт](https://bitfilmssanisimov.students.nomoredomains.icu)
