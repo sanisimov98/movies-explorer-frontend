@@ -3,4 +3,17 @@
     font-size: 11px;
     line-height: 13px;
     margin: 0;
+    background: none;
+    border: none;
+    color: white;
+    text-align: end;
+}
+
+.profile__item-text:focus {
+    outline: none;
+}
+
+.profile__item-text:invalid {
+    color: #EE3465;
+    margin: 0;
 }

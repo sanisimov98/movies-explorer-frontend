@@ -5,8 +5,19 @@
     margin: 0;
     transition: ease-in-out 200ms;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.profile__settings-text:disabled {
+    opacity: 0.4;
 }
 
 .profile__settings-text:hover {
     opacity: 0.6;
+}
+
+.profile__settings-text:focus {
+    outline: none;
 }

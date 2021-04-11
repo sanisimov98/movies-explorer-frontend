@@ -14,10 +14,14 @@ class MoviesApi {
   getFilms = () => {
     return fetch(`${this._options.baseURL}`, {
       headers: this._options.headers,
-    }).then((res) => {
-      this.handleResponse(res);
-      return res.json();
-    });
+    })
+      .then((res) => {
+        this.handleResponse(res);
+        return res.json();
+      })
+      .catch((err) => {
+        return err;
+      });
   };
 }
 

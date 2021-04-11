@@ -5,6 +5,7 @@
     cursor: pointer;
     opacity: 1;
     transition: 200ms ease-in-out;
+    z-index: 3;
 }
 
 .card__remove:hover {

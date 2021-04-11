@@ -44,12 +44,7 @@ export default function MoviesCard({
           onClick={removeFilm}
         />
       ) : isSaved ? (
-        <img
-          className={`card__check`}
-          src={save}
-          alt={"Добавлено"}
-          onClick={removeFilm}
-        />
+        <img className={`card__check`} src={save} alt={"Добавлено"} />
       ) : (
         <p
           className={`card__save ${isHovered ? "" : "card__save_hidden"}`}
@@ -58,11 +53,21 @@ export default function MoviesCard({
           Сохранить
         </p>
       )}
-      <img
-        className={"card__image"}
-        src={film.image ? `https://api.nomoreparties.co${film.image.url}` : ""}
-        alt={film.nameRU}
-      />
+      <a href={film.trailerLink} target={"_blank"} rel="noreferrer">
+        <img
+          className={"card__image"}
+          src={
+            savedPage
+              ? film.image
+                ? film.image
+                : ""
+              : film.image
+              ? `https://api.nomoreparties.co${film.image.url}`
+              : ""
+          }
+          alt={film.nameRU}
+        />
+      </a>
       <div className={"card__info"}>
         <p className={"card__title"}>{film.nameRU}</p>
         <p className={"card__duration"}>{duration}</p>
