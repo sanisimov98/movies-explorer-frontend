@@ -12,7 +12,6 @@ export default function MoviesCard({
   const [isSaved, setIsSaved] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const duration = `${Math.round(film.duration / 60)}ч ${film.duration % 60}м`;
-
   useEffect(() => {
     if (!savedPage) {
       const filmIsSavedCheck = (film) => {
@@ -70,7 +69,11 @@ export default function MoviesCard({
           Сохранить
         </p>
       )}
-      <a href={film.trailerLink} target={"_blank"} rel="noreferrer">
+      <a
+        href={savedPage ? film.trailer : film.trailerLink}
+        target={"_blank"}
+        rel="noreferrer"
+      >
         <img
           className={"card__image"}
           src={
