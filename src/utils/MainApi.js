@@ -32,7 +32,8 @@ class MainApi {
     });
   };
 
-  getSavedFilms = () => {
+  getSavedFilms = (token) => {
+    this.tokenUpdate(token);
     return fetch(`${ROUTES_MAP.BASE_URL}${ROUTES_MAP.FILMS}`, {
       method: "GET",
       headers: this._options.headers,
@@ -52,10 +53,10 @@ class MainApi {
     trailerLink,
     nameRU,
     nameEN,
+    id,
   }) => {
     const imageURL = `https://api.nomoreparties.co${image.url}`;
     const imageThumbnail = `https://api.nomoreparties.co${image.formats.thumbnail.url}`;
-    console.log(imageThumbnail, imageURL);
     return fetch(`${ROUTES_MAP.BASE_URL}${ROUTES_MAP.FILMS}`, {
       method: "POST",
       headers: this._options.headers,
@@ -70,25 +71,22 @@ class MainApi {
         nameRU: nameRU,
         nameEN: nameEN,
         thumbnail: imageThumbnail,
+        movieId: id,
       }),
-    })
-      .then((res) => {
-        this.handleResponse(res);
-        return res.json();
-      })
-      .catch((err) => console.log(err));
+    }).then((res) => {
+      this.handleResponse(res);
+      return res.json();
+    });
   };
 
-  removeFilm = ({ _id }) => {
-    return fetch(`${ROUTES_MAP.BASE_URL}${ROUTES_MAP.FILMS}/${_id}`, {
+  removeFilm = (id) => {
+    return fetch(`${ROUTES_MAP.BASE_URL}${ROUTES_MAP.FILMS}/${id}`, {
       method: "DELETE",
       headers: this._options.headers,
-    })
-      .then((res) => {
-        this.handleResponse(res);
-        return res.json();
-      })
-      .catch((err) => console.log(err));
+    }).then((res) => {
+      this.handleResponse(res);
+      return res.json();
+    });
   };
 }
 

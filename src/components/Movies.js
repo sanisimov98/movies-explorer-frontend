@@ -8,26 +8,15 @@ export default function Movies({
   handleFilmRemove,
   isLoading,
   handleLoading,
+  initialFilms,
+  savedFilms,
 }) {
-  const [films, setFilms] = React.useState([]);
   const [chosenFilms, setChosenFilms] = useState([]);
   const [displayedFilms, setDisplayedFilms] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const [searchedOnce, setSearchedOnce] = useState(false);
 
   const [shortFilmsSelected, setShortFilmsSelected] = useState(false);
-
-  React.useEffect(() => {
-    handleLoading(true);
-    if (localStorage.getItem("films")) {
-      setFilms(JSON.parse(localStorage.getItem("films")));
-      handleLoading(false);
-    }
-    return () => {
-      setFilms([]);
-      handleLoading(false);
-    };
-  }, []);
 
   const handleCheckboxSelected = () => {
     setShortFilmsSelected(!shortFilmsSelected);
@@ -42,7 +31,7 @@ export default function Movies({
     setSearchedOnce(true);
     handleLoading(true);
     setChosenFilms(
-      films.filter((el) => {
+      initialFilms.filter((el) => {
         return el.nameRU.toLowerCase().includes(searchWord.toLowerCase());
       })
     );
@@ -77,6 +66,7 @@ export default function Movies({
           films={displayedFilms}
           savedPage={false}
           handleFilmSave={handleFilmSave}
+          savedFilms={savedFilms}
           handleFilmRemove={handleFilmRemove}
         />
       ) : (

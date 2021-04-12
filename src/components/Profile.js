@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import validator from "validator";
 
-export default function Profile({ onUpdate, onLogout }) {
+export default function Profile({ onUpdate, onLogout, successText }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [emailValid, setEmailValid] = useState(true);
   const [email, setEmail] = useState("");
   const [nameValid, setNameValid] = useState(true);
   const [name, setName] = useState("");
-  const [successText, setSuccessText] = useState("");
 
   useEffect(() => {
     setEmail(currentUser.email);
@@ -16,17 +14,11 @@ export default function Profile({ onUpdate, onLogout }) {
   }, [currentUser]);
 
   const handleProfileUpdate = () => {
-    onUpdate({ email, name })
-      .then(() => {
-        setSuccessText("Данные успешно изменены!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    onUpdate({ email, name });
   };
 
   const handleEmailValidation = (evt) => {
-    if (!validator.isEmail(evt.target.value)) {
+    if (!evt.target.validity.valid) {
       setEmailValid(false);
       setEmail(evt.target.value);
     } else {

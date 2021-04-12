@@ -9,6 +9,7 @@ export default function SavedMovies({
   handleFilmSave,
   isLoading,
   handleLoading,
+  savedFilms,
 }) {
   const [displayedFilms, setDisplayedFilms] = useState([]);
   const [searchWord, setSearchWord] = useState("");
@@ -69,6 +70,7 @@ export default function SavedMovies({
         <MoviesCardList
           films={displayedFilms}
           savedPage={true}
+          savedFilms={false}
           handleFilmSave={handleFilmSave}
           handleFilmRemove={handleFilmRemove}
         />

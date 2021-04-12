@@ -13,7 +13,7 @@ export const ProtectedRoute = ({
         isLoggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to={ROUTES_MAP.SIGN_IN} />
+          <Redirect to={ROUTES_MAP.MAIN} />
         )
       }
     </Route>

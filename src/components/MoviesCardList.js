@@ -6,6 +6,7 @@ export default function MoviesCardList({
   savedPage,
   handleFilmSave,
   handleFilmRemove,
+  savedFilms,
 }) {
   const [filmsCount, setFilmsCount] = useState(12);
   const [filmsRowCount, setFilmsRowCount] = useState(3);
@@ -43,7 +44,6 @@ export default function MoviesCardList({
     const currentLength = displayedFilms.length;
     setDisplayedFilms(films.slice(0, currentLength + filmsRowCount));
   };
-
   return (
     <>
       <section className={"card-list"}>
@@ -53,6 +53,7 @@ export default function MoviesCardList({
               film={film}
               key={savedPage ? film._id : film.id}
               savedPage={savedPage}
+              savedFilms={savedFilms}
               handleFilmSave={handleFilmSave}
               handleFilmRemove={handleFilmRemove}
             />

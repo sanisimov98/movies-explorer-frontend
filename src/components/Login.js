@@ -3,15 +3,13 @@ import { ROUTES_MAP } from "../utils/routesMap";
 import AuthForm from "./AuthForm";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
-import validator from "validator";
 
-export default function Login({ onLogin, isLoggedIn }) {
+export default function Login({ onLogin, isLoggedIn, error }) {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -21,17 +19,11 @@ export default function Login({ onLogin, isLoggedIn }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onLogin(email, password)
-      .then((data) => {
-        if (data && data.message) {
-          setError(data.message);
-        }
-      })
-      .catch((err) => console.log(err));
+    onLogin(email, password);
   };
 
   const handleEmailValidation = (evt) => {
-    if (!validator.isEmail(evt.target.value)) {
+    if (!evt.target.validity.valid) {
       setEmailValid(false);
       setEmail(evt.target.value);
     } else {
@@ -84,12 +76,15 @@ export default function Login({ onLogin, isLoggedIn }) {
         placeholder=""
         required
         value={password}
+        minLength={2}
         onChange={handlePasswordValidation}
       />
       {passwordValid ? (
         <p className={"auth__error"}> </p>
       ) : (
-        <p className={"auth__error"}>Поле пароль обязательно</p>
+        <p className={"auth__error"}>
+          Поле пароль обязательно, минимальная длина пароля – 2 символа
+        </p>
       )}
     </AuthForm>
   );

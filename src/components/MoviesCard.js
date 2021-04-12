@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import save from "../images/save.svg";
 import deleteIcon from "../images/delete-film.svg";
 
@@ -7,10 +7,22 @@ export default function MoviesCard({
   savedPage,
   handleFilmRemove,
   handleFilmSave,
+  savedFilms,
 }) {
-  const [isSaved, setIsSaved] = React.useState(film.saved);
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const duration = `${Math.round(film.duration / 60)}ч ${film.duration % 60}м`;
+
+  useEffect(() => {
+    if (!savedPage) {
+      const filmIsSavedCheck = (film) => {
+        return !!savedFilms.find((savedFilm) => savedFilm.movieId === film.id);
+      };
+      if (filmIsSavedCheck(film)) {
+        setIsSaved(true);
+      }
+    }
+  }, [savedPage, savedFilms, film]);
 
   const saveFilm = () => {
     handleFilmSave(film);
@@ -44,7 +56,12 @@ export default function MoviesCard({
           onClick={removeFilm}
         />
       ) : isSaved ? (
-        <img className={`card__check`} src={save} alt={"Добавлено"} />
+        <img
+          className={`card__check`}
+          src={save}
+          alt={"Добавлено"}
+          onClick={removeFilm}
+        />
       ) : (
         <p
           className={`card__save ${isHovered ? "" : "card__save_hidden"}`}

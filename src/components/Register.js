@@ -1,41 +1,24 @@
 import AuthForm from "./AuthForm";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { ROUTES_MAP } from "../utils/routesMap";
-import validator from "validator";
 
-export default function Register({ onRegister }) {
-  const history = useHistory();
+export default function Register({ onRegister, error }) {
   const [emailValid, setEmailValid] = useState(true);
   const [email, setEmail] = useState("");
   const [passwordValid, setPasswordValid] = useState(true);
   const [password, setPassword] = useState("");
   const [nameValid, setNameValid] = useState(true);
   const [name, setName] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = (evt) => {
-    setError("");
     evt.preventDefault();
-    onRegister(email, password, name)
-      .then((res) => {
-        if (res && res.message) {
-          setError(res.message);
-        }
-        if (res && res.email && res.name) {
-          setError("");
-          history.push(ROUTES_MAP.FILMS);
-          return;
-        }
-      })
-      .catch((err) => console.log(err));
+    onRegister(email, password, name);
     setEmail("");
     setPassword("");
     setName("");
   };
 
   const handleEmailValidation = (evt) => {
-    if (!validator.isEmail(evt.target.value)) {
+    if (!evt.target.validity.valid) {
       setEmailValid(false);
       setEmail(evt.target.value);
     } else {
@@ -130,6 +113,7 @@ export default function Register({ onRegister }) {
         required
         onChange={handlePasswordValidation}
         value={password}
+        minLength={2}
       />
       {passwordValid ? (
         <p className={"auth__error"}> </p>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { ROUTES_MAP } from "../utils/routesMap";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import Header from "./Header";
@@ -23,6 +23,9 @@ function App() {
   const [savedFilms, setSavedFilms] = React.useState([]);
   const [permissionChecked, setPermissionChecked] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [initialFilms, setInitialFilms] = React.useState([]);
+  const [error, setError] = React.useState("");
+  const [successText, setSuccessText] = React.useState("");
 
   const handleLoading = (loadingState) => {
     setIsLoading(loadingState);
@@ -36,8 +39,8 @@ function App() {
         .then((res) => {
           if (res) {
             api.tokenUpdate(token);
-            setIsLoggedIn(true);
             setCurrentUser(res);
+            setIsLoggedIn(true);
             setPermissionChecked(true);
           } else {
             localStorage.removeItem("token");
@@ -49,32 +52,22 @@ function App() {
       setIsLoggedIn(false);
       setPermissionChecked(true);
     }
-  }, [isLoggedIn, history]);
-
-  React.useEffect(() => {
-    if (!localStorage.getItem("films") && isLoggedIn) {
-      handleLoading(true);
-      Promise.all([moviesApi.getFilms()])
-        .then(([initialFilms]) => {
-          localStorage.setItem("films", JSON.stringify(initialFilms));
-          handleLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          handleLoading(false);
-        });
-    }
   }, [isLoggedIn]);
 
   React.useEffect(() => {
-    if (isLoggedIn) {
+    const token = localStorage.getItem("token");
+
+    if (isLoggedIn && token) {
       handleLoading(true);
-      Promise.all([api.getSavedFilms()])
-        .then(([initialSavedFilms]) => {
+      Promise.all([moviesApi.getFilms(), api.getSavedFilms(token)])
+        .then(([initFilms, initialSavedFilms]) => {
+          if (initFilms) {
+            setInitialFilms(initFilms);
+          }
           if (initialSavedFilms.data) {
             setSavedFilms(initialSavedFilms.data);
-            handleLoading(false);
           }
+          handleLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -84,6 +77,7 @@ function App() {
   }, [isLoggedIn]);
 
   const loginHandler = (email, password) => {
+    setError("");
     return auth
       .authorise(email, password)
       .then((data) => {
@@ -92,6 +86,7 @@ function App() {
           history.push(ROUTES_MAP.FILMS);
         }
         if (data.message) {
+          setError(data.message);
           return data;
         }
       })
@@ -101,22 +96,26 @@ function App() {
   };
 
   const registerHandler = (email, password, name) => {
+    setError("");
     return auth
       .register(email, password, name)
       .then((data) => {
-        return auth
-          .authorise(email, password)
-          .then((res) => {
+        if (data.email && data.name) {
+          return auth.authorise(email, password).then((res) => {
             if (res.token) {
               setIsLoggedIn(true);
               history.push(ROUTES_MAP.FILMS);
             }
             if (res.message) {
+              setError(res.message);
               return res;
             }
             return data;
-          })
-          .catch((err) => console.log(err));
+          });
+        } else {
+          setError(data.message);
+          return data;
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -133,20 +132,37 @@ function App() {
   };
 
   const handleFilmRemove = (film) => {
-    api
-      .removeFilm(film)
-      .then((res) => {
-        const updatedSaved = savedFilms.filter((f) => film._id !== f._id);
-        setSavedFilms(updatedSaved);
-      })
-      .catch((err) => console.log(err));
+    if (film._id) {
+      api
+        .removeFilm(film._id)
+        .then((res) => {
+          const updatedSaved = savedFilms.filter((f) => film._id !== f._id);
+          setSavedFilms(updatedSaved);
+        })
+        .catch((err) => console.log(err));
+    } else if (film.id) {
+      const filmId = savedFilms.filter((f) => {
+        return f.movieId === film.id;
+      });
+      api
+        .removeFilm(filmId[0]._id)
+        .then((res) => {
+          const updatedSaved = savedFilms.filter(
+            (f) => filmId[0]._id !== f._id
+          );
+          setSavedFilms(updatedSaved);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleUpdateUser = (values) => {
+    setError("");
     return api
       .setProfileData(values)
       .then((userdata) => {
         setCurrentUser(userdata);
+        setSuccessText("Данные успешно изменены!");
       })
       .catch((err) => {
         console.log(err);
@@ -155,8 +171,10 @@ function App() {
 
   const handleLogout = () => {
     history.push(ROUTES_MAP.MAIN);
-    localStorage.removeItem("token");
+    setInitialFilms([]);
+    setSavedFilms([]);
     setIsLoggedIn(false);
+    localStorage.removeItem("token");
   };
 
   if (!permissionChecked) {
@@ -165,58 +183,64 @@ function App() {
   if (permissionChecked) {
     return (
       <CurrentUserContext.Provider value={currentUser}>
-        <BrowserRouter>
-          <div className="page">
-            <Header isLoggedIn={isLoggedIn} />
-            <Switch>
-              <Route exact path={ROUTES_MAP.SIGN_IN}>
-                <Login onLogin={loginHandler} isLoggedIn={isLoggedIn} />
-              </Route>
-              <Route exact path={ROUTES_MAP.SIGN_UP}>
-                <Register
-                  onRegister={registerHandler}
-                  isLoggedIn={isLoggedIn}
-                />
-              </Route>
-              <Route exact path={ROUTES_MAP.MAIN}>
-                <Main />
-              </Route>
-              <ProtectedRoute
-                exact
-                path={ROUTES_MAP.FILMS}
+        <div className="page">
+          <Header isLoggedIn={isLoggedIn} />
+          <Switch>
+            <Route exact path={ROUTES_MAP.SIGN_IN}>
+              <Login
+                onLogin={loginHandler}
                 isLoggedIn={isLoggedIn}
-                component={Movies}
-                handleFilmSave={handleFilmSave}
-                handleFilmRemove={handleFilmRemove}
-                isLoading={isLoading}
-                handleLoading={handleLoading}
+                error={error}
               />
-              <ProtectedRoute
-                exact
-                path={ROUTES_MAP.SAVED_FILMS}
+            </Route>
+            <Route exact path={ROUTES_MAP.SIGN_UP}>
+              <Register
+                onRegister={registerHandler}
                 isLoggedIn={isLoggedIn}
-                films={savedFilms}
-                component={SavedMovies}
-                handleFilmSave={handleFilmSave}
-                handleFilmRemove={handleFilmRemove}
-                isLoading={isLoading}
-                handleLoading={handleLoading}
+                error={error}
               />
-              <ProtectedRoute
-                exact
-                path={ROUTES_MAP.PROFILE}
-                isLoggedIn={isLoggedIn}
-                component={Profile}
-                onUpdate={handleUpdateUser}
-                onLogout={handleLogout}
-              />
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-            <Footer />
-          </div>
-        </BrowserRouter>
+            </Route>
+            <Route exact path={ROUTES_MAP.MAIN}>
+              <Main />
+            </Route>
+            <ProtectedRoute
+              exact
+              path={ROUTES_MAP.FILMS}
+              isLoggedIn={isLoggedIn}
+              component={Movies}
+              initialFilms={initialFilms}
+              savedFilms={savedFilms}
+              handleFilmSave={handleFilmSave}
+              handleFilmRemove={handleFilmRemove}
+              isLoading={isLoading}
+              handleLoading={handleLoading}
+            />
+            <ProtectedRoute
+              exact
+              path={ROUTES_MAP.SAVED_FILMS}
+              isLoggedIn={isLoggedIn}
+              films={savedFilms}
+              component={SavedMovies}
+              handleFilmSave={handleFilmSave}
+              handleFilmRemove={handleFilmRemove}
+              isLoading={isLoading}
+              handleLoading={handleLoading}
+            />
+            <ProtectedRoute
+              exact
+              path={ROUTES_MAP.PROFILE}
+              isLoggedIn={isLoggedIn}
+              component={Profile}
+              onUpdate={handleUpdateUser}
+              onLogout={handleLogout}
+              successText={successText}
+            />
+            <Route path={"*"}>
+              <NotFound />
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
       </CurrentUserContext.Provider>
     );
   }
