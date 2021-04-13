@@ -1,13 +1,22 @@
 import AuthForm from "./AuthForm";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { ROUTES_MAP } from "../utils/routesMap";
 
-export default function Register({ onRegister, error }) {
+export default function Register({ onRegister, error, isLoggedIn }) {
   const [emailValid, setEmailValid] = useState(true);
   const [email, setEmail] = useState("");
   const [passwordValid, setPasswordValid] = useState(true);
   const [password, setPassword] = useState("");
   const [nameValid, setNameValid] = useState(true);
   const [name, setName] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push(ROUTES_MAP.FILMS);
+    }
+  }, [history, isLoggedIn]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
