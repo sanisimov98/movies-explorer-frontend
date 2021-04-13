@@ -26,14 +26,27 @@ export default function AuthForm(props) {
           </Switch>
           <fieldset className="auth__form">
             {props.children}
+            {props.error ? (
+              <p className={"auth__error"}>{props.error}</p>
+            ) : (
+              <></>
+            )}
             <Switch>
               <Route path={ROUTES_MAP.SIGN_UP}>
-                <button type="submit" className="auth__form-button">
+                <button
+                  type="submit"
+                  className="auth__form-button"
+                  disabled={props.valid}
+                >
                   Зарегистрироваться
                 </button>
               </Route>
               <Route path={ROUTES_MAP.SIGN_IN}>
-                <button type="submit" className="auth__form-button">
+                <button
+                  type="submit"
+                  className="auth__form-button"
+                  disabled={props.valid}
+                >
                   Войти
                 </button>
               </Route>

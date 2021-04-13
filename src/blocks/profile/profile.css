@@ -7,6 +7,7 @@
 @import "__settings/profile__settings.css";
 @import "__settings-logout/profile__settings-logout.css";
 @import "__settings-text/profile__settings-text.css";
+@import "__settings-text/_success/profile__settings-text_success.css";
 
 .profile {
     flex: 1 0 auto;

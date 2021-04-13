@@ -5,6 +5,7 @@
     max-height: 200px;
     object-fit: cover;
     border-radius: 6px;
+    transition: ease-in-out 200ms;
 }
 
 
@@ -20,4 +21,9 @@
         max-width: 300px;
         max-height: 170px;
     }
+}
+
+
+.card__image:hover {
+    opacity: 0.6;
 }

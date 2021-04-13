@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import save from "../images/save.svg";
 import deleteIcon from "../images/delete-film.svg";
 
@@ -7,10 +7,21 @@ export default function MoviesCard({
   savedPage,
   handleFilmRemove,
   handleFilmSave,
+  savedFilms,
 }) {
-  const [isSaved, setIsSaved] = React.useState(film.saved);
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const duration = `${Math.round(film.duration / 60)}ч ${film.duration % 60}м`;
+  useEffect(() => {
+    if (!savedPage) {
+      const filmIsSavedCheck = (film) => {
+        return !!savedFilms.find((savedFilm) => savedFilm.movieId === film.id);
+      };
+      if (filmIsSavedCheck(film)) {
+        setIsSaved(true);
+      }
+    }
+  }, [savedPage, savedFilms, film]);
 
   const saveFilm = () => {
     handleFilmSave(film);
@@ -58,11 +69,25 @@ export default function MoviesCard({
           Сохранить
         </p>
       )}
-      <img
-        className={"card__image"}
-        src={film.image ? `https://api.nomoreparties.co${film.image.url}` : ""}
-        alt={film.nameRU}
-      />
+      <a
+        href={savedPage ? film.trailer : film.trailerLink}
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        <img
+          className={"card__image"}
+          src={
+            savedPage
+              ? film.image
+                ? film.image
+                : ""
+              : film.image
+              ? `https://api.nomoreparties.co${film.image.url}`
+              : ""
+          }
+          alt={film.nameRU}
+        />
+      </a>
       <div className={"card__info"}>
         <p className={"card__title"}>{film.nameRU}</p>
         <p className={"card__duration"}>{duration}</p>

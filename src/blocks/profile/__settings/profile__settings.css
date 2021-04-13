@@ -1,4 +1,5 @@
 .profile__settings {
     display: flex;
     flex-direction: column;
+    margin: 220px auto 0;
 }
